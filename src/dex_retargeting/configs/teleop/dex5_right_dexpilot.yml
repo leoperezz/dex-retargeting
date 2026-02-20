@@ -1,0 +1,11 @@
+retargeting:
+  type: DexPilot
+  urdf_path: dex5/Dex5-URDF-R.urdf
+
+  # Target refers to the retargeting target, which is the robot hand
+  wrist_link_name: "base_link00"
+  finger_tip_link_names: [ "Link_14R", "Link_24R", "Link_34R", "Link_44R", "Link_54R" ]
+  scaling_factor: 1.5
+
+  # A smaller alpha means stronger filtering, i.e. more smooth but also larger latency
+  low_pass_alpha: 0.2

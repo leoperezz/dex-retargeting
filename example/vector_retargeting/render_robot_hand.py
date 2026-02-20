@@ -97,11 +97,12 @@ def render_by_sapien(
     elif "svh" in robot_name:
         loader.scale = 1.5
 
+    filepath = Path(filepath)
     if "glb" not in robot_name:
-        filepath = str(filepath).replace(".urdf", "_glb.urdf")
-    else:
-        filepath = str(filepath)
-    robot = loader.load(filepath)
+        glb_filepath = Path(str(filepath).replace(".urdf", "_glb.urdf"))
+        # Prefer GLB-visual URDF when available, otherwise keep the original URDF.
+        filepath = glb_filepath if glb_filepath.exists() else filepath
+    robot = loader.load(str(filepath))
 
     if "ability" in robot_name:
         robot.set_pose(sapien.Pose([0, 0, -0.15]))

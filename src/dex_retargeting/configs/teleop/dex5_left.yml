@@ -1,0 +1,16 @@
+retargeting:
+  type: vector
+  urdf_path: dex5/Dex5-URDF-L.urdf
+
+  # Target refers to the retargeting target, which is the robot hand
+  # Finger 1=thumb (Link_14L), 2=index (Link_24L), 3=middle (Link_34L), 4=ring (Link_44L), 5=pinky (Link_54L)
+  target_origin_link_names: [ "base_link00L", "base_link00L", "base_link00L", "base_link00L", "base_link00L" ]
+  target_task_link_names: [ "Link_14L", "Link_24L", "Link_34L", "Link_44L", "Link_54L" ]
+  scaling_factor: 1.5
+
+  # Source refers to the retargeting input, which usually corresponds to the human hand
+  # MediaPipe indices: 0=wrist, 4=thumb tip, 8=index tip, 12=middle tip, 16=ring tip, 20=pinky tip
+  target_link_human_indices: [ [ 0, 0, 0, 0, 0 ], [ 4, 8, 12, 16, 20 ] ]
+
+  # A smaller alpha means stronger filtering, i.e. more smooth but also larger latency
+  low_pass_alpha: 0.2
